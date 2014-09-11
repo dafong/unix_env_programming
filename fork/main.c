@@ -33,6 +33,7 @@ int main(int argc,char *argv[] )
 		// in parent
 		sleep(2);
 	}
+	
 	printf("pid = %ld , var = %d, gloval = %d \n", (long)getpid() , var , global);
 	exit(0);
 }
