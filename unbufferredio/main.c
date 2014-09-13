@@ -12,9 +12,8 @@
 #include <string.h>
 
 int main(int argc, char *argv[]) {
+
 	char path[256] ;
-	
-	size_t size;
 	
 	if(NULL != getcwd(path,256)){
 		printf("base path: %s\n", path);
@@ -57,7 +56,7 @@ int main(int argc, char *argv[]) {
 
 		char buf1[] = "text after hole";
 
-		if(write(fd,buf,strlen(buf)) != strlen(buf)){
+		if(write(fd,buf1,strlen(buf1)) != strlen(buf1)){
 			fprintf(stderr, "%s\n", "write hole error");
 		}
 		
@@ -66,11 +65,22 @@ int main(int argc, char *argv[]) {
 			fprintf(stderr, "%s\n", "close error");
 			return 1;
 		}
-		//atomic operation?
+		//atomic operation? you can use pread pwrite or open with O_CREAT option
 
 		//about the sync and fsync
+		sync();  //not blocking
+		fsync(fd); //blocking till write to the disk
+		fdatasync(fd);//same fsync but only effect the data part
 
 		//about fcntl
+		int fd_dup = fcntl(fd, F_DUPFD, 0);
+		if ( fd_dup < 0 )
+		{
+			fprintf(stderr, "%s\n", "dup error");
+			return 1;
+		}
+
+		
 
 		//about ioctl
 	}else{

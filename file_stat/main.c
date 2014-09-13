@@ -35,6 +35,7 @@ int main(int argc, char *argv[])
 			info = "symbolic link";
 		}else if (S_ISSOCK(buf.st_mode))
 		{
+			
 			info = "socket file";
 		}else
 			info = "** unknow mode **";
