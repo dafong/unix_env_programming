@@ -12,14 +12,7 @@ int main(int argc,char *argvs[]){
 		fprintf(stderr, "%s\n", "usage: hello.out pathname");
 		return 1;
 	}
-
-	if (access(argvs[1],R_OK) <  0)
-	{
-		fprintf(stderr, "access error for %s\n", argvs[1]);
-
-	}else{
-		printf("%s\n", "access OK");
-	}
+	echo(argvs[1]);
 
 	exit(0);
 
